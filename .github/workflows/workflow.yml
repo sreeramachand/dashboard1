@@ -1,0 +1,19 @@
+    name: My App Workflow
+
+    on: [push]
+
+    jobs:
+      build:
+        runs-on: ubuntu-latest
+        steps:
+        - uses: actions/checkout@v4
+        - name: Set up Python
+          uses: actions/setup-python@v5
+          with:
+            python-version: '3.x'
+        - name: Install dependencies
+          run: pip install -r requirements.txt
+        - name: Run app with API Key
+          env:
+            MY_API_KEY: ${{ secrets.MY_API_KEY }}  # Inject the secret as an environment variable
+          run: python app.py
