@@ -4,3 +4,4 @@ dash_bootstrap_components
 openai
 pypdf2
 Pillow
+python-dotenv

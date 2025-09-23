@@ -15,10 +15,12 @@ import dash_bootstrap_components as dbc
 
 # OpenAI client
 from openai import OpenAI
+from dotenv import load_dotenv
 
 # --------------------
 # Configuration
 # --------------------
+load_dotenv()
 
 OPENAI_API_KEY = os.environ.get("OPENAI_API_KEY")
 
