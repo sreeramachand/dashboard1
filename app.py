@@ -12,6 +12,8 @@ from time import sleep
 import dash
 from dash import Dash, html, dcc, Input, Output, State, ctx
 import dash_bootstrap_components as dbc
+from dash_bootstrap_templates import load_figure_template
+#import dash_design_kit as ddk
 
 # OpenAI client
 from openai import OpenAI
@@ -175,13 +177,19 @@ def detect_and_summarize_file(content_b64: str, filename: str):
 # --------------------
 app = Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP], suppress_callback_exceptions=True, prevent_initial_callbacks='initial_duplicate')
 
-app.layout = html.Div([
+# 🕓 History
+
+app.layout = [
+    html.Div(children="Prod Analytics Dashboard", style={"textAlign": 'center', "fontSize": 28, "padding": "12px"}),
+    
+    html.Div(
+    [
     dcc.Tabs(id="tabs", value="tab-chat", children=[
         dcc.Tab(label="📊 Data", value="tab-data"),
         dcc.Tab(label="🤖 Chat", value="tab-chat"),
     ]),
     html.Div(id="tabs-content"),
-])
+])]
 
 # Render tabs (single callback)
 @app.callback(Output("tabs-content", "children"), Input("tabs", "value"))
@@ -193,7 +201,7 @@ def render_content(tab):
         )
     # Chat tab
     return html.Div([
-        html.H3("🤖 Chat with AI", className="my-3"),
+        html.H3("🤖 Chat with AI ✨", className="my-3"),
         html.Div(id="chat-history",
                  style={
                      "height": "450px",

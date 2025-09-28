@@ -5,3 +5,4 @@ openai
 pypdf2
 Pillow
 python-dotenv
+dash_bootstrap_templates
